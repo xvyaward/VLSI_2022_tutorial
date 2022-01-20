@@ -14,7 +14,7 @@ from models import MLP
 from utils import get_mnist_train_valid_loader
 from utils import get_mnist_test_loader
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '2'                                            # GPU number that you will use
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'                                            # GPU number that you will use
 
 best_valid_top1 = 0
 best_valid_top5 = 0
