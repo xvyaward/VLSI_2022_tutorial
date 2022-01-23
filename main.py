@@ -154,9 +154,11 @@ def main():
         num_params += params.view(-1).size(0)
     print("# of parameters : " + str(num_params))
 
-    for epoch in range(1, 50):                                                      # you can change total epochs
+    total_epochs = 50                                                               # you can change total epochs
+    
+    for epoch in range(1, total_epochs):                                                      
         current_lr = optimizer.param_groups[0]['lr']
-        print(f"\nEpoch: [{epoch} | 50] LR: {current_lr:.3e}")                      # if you changed total epochs, you also need to change here, too.
+        print(f"\nEpoch: [{epoch} | {total_epochs}] LR: {current_lr:.3e}")                      # if you changed total epochs, you also need to change here, too.
 
         train_loss, train_top1, train_top5 = train(
             train_loader, model, criterion,
@@ -166,7 +168,11 @@ def main():
                     valid_loader, model, criterion, epoch)
         test_loss, test_top1, test_top5 = test(
                     test_loader, model, criterion, epoch)
- 
+
+        if valid_top1 > best_valid_top1:
+            best_valid_top1 = valid_top1
+            best_test_top1 = test_top1       
+        
     print('Test top1 @ best valid top1:')
     print(f"{best_test_top1:.2f}")
     print('Test top1 @ last epoch:')
