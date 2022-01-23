@@ -158,7 +158,7 @@ def main():
     
     for epoch in range(1, total_epochs):                                                      
         current_lr = optimizer.param_groups[0]['lr']
-        print(f"\nEpoch: [{epoch} | {total_epochs}] LR: {current_lr:.3e}")                      # if you changed total epochs, you also need to change here, too.
+        print(f"\nEpoch: [{epoch} | {total_epochs}] LR: {current_lr:.3e}")
 
         train_loss, train_top1, train_top5 = train(
             train_loader, model, criterion,
